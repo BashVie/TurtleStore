@@ -2,7 +2,7 @@
 
 In order to know which action we will be performing when the turtle sends a message over the socket, the message should begin with a keyword, such as:
 
-#+BEGTIN_SRC
+#+BEGIN_SRC
 STORE {"id": "minecraft:dirt", "count": 25"}
 LOCATE {"id": "minecraft:diamond"}
 TAKE {"id": "minecraft:diamond", "count": 3}
