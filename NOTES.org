@@ -1,0 +1,26 @@
+#+TITLE: Notes
+
+In order to know which action we will be performing when the turtle sends a message over the socket, the message should begin with a keyword, such as:
+
+#+BEGTIN_SRC
+STORE {"id": "minecraft:dirt", "count": 25"}
+LOCATE {"id": "minecraft:diamond"}
+TAKE {"id": "minecraft:diamond", "count": 3}
+#+END_SRC
+
+Data will be stored in a SQLite database, with tables defined as such:
+
+#+BEGIN_SRC sql
+    CREATE TABLE "inventory" (
+        "itemId"	TEXT,
+        "location"	TEXT NOT NULL UNIQUE,
+        "quantity"	INTEGER NOT NULL,
+        PRIMARY KEY("itemId")
+    )
+    CREATE TABLE "recipes" (
+        "itemId"	TEXT,
+        "recipe"	TEXT NOT NULL,
+        FOREIGN KEY("itemId") REFERENCES "inventory"("itemId"),
+        PRIMARY KEY("itemId")
+    )
+#+END_SRC
